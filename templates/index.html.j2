@@ -5,107 +5,303 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WordPress Contributor Sponsors</title>
 <meta name="description" content="A directory of WordPress Core and Gutenberg contributors with direct sponsorship links. Support the individuals who ship WordPress.">
+<meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  (() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") {
+      document.documentElement.dataset.theme = saved;
+    }
+  })();
+</script>
 <style>
   :root {
+    color-scheme: light dark;
+
     --bg: #fafaf9;
     --surface: #ffffff;
-    --surface-hover: #f7f7f6;
+    --surface-2: #f5f5f4;
+    --surface-hover: #f0efee;
     --ink: #0c0a09;
-    --ink-2: #44403c;
-    --muted: #78716c;
-    --faint: #a8a29e;
-    --line: #e7e5e4;
-    --line-2: #f5f5f4;
-    --accent: #2563eb;
-    --accent-soft: #eff6ff;
-    --wp-blue: #3858e9;
-    --success: #16a34a;
-    --success-soft: #f0fdf4;
+    --ink-2: #3f3b37;
+    --muted: #5c5550;
+    --faint: #6b625c;
+    --line: #d6d3d1;
+    --line-2: #e7e5e4;
+    --accent: #1d4ed8;
+    --accent-hover: #1e40af;
+    --accent-soft: #e0ecff;
+    --accent-ink: #1e40af;
+    --success: #166534;
+    --success-soft: #dcfce7;
+    --focus: #1d4ed8;
+    --focus-ring-offset: 2px;
+
+    --btn-github-bg: #1f2328;
+    --btn-github-ink: #ffffff;
+    --btn-oc-bg: #0e56c2;
+    --btn-oc-ink: #ffffff;
+    --btn-kofi-bg: #c8302a;
+    --btn-kofi-ink: #ffffff;
+    --btn-bmc-bg: #ffdd00;
+    --btn-bmc-ink: #1a1a1a;
+    --btn-liberapay-bg: #f6c915;
+    --btn-liberapay-ink: #1a1a1a;
+    --btn-patreon-bg: #b8212e;
+    --btn-patreon-ink: #ffffff;
+
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
     --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04);
-    --shadow-lg: 0 10px 32px -12px rgb(0 0 0 / 0.12);
+
     --radius: 12px;
     --radius-sm: 8px;
   }
+
+  :root[data-theme="dark"],
+  :root:not([data-theme]) {
+    /* placeholder so specificity is defined */
+  }
+
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
       --bg: #0c0a09;
       --surface: #1c1917;
-      --surface-hover: #292524;
+      --surface-2: #292524;
+      --surface-hover: #322e2b;
       --ink: #fafaf9;
-      --ink-2: #d6d3d1;
-      --muted: #a8a29e;
-      --faint: #78716c;
-      --line: #292524;
-      --line-2: #1c1917;
-      --accent: #60a5fa;
-      --accent-soft: #172554;
-      --success: #4ade80;
+      --ink-2: #e7e5e4;
+      --muted: #c2bcb6;
+      --faint: #a8a29e;
+      --line: #44403c;
+      --line-2: #292524;
+      --accent: #93c5fd;
+      --accent-hover: #bfdbfe;
+      --accent-soft: #1e3a8a;
+      --accent-ink: #bfdbfe;
+      --success: #86efac;
       --success-soft: #14532d;
-      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4);
-      --shadow-lg: 0 10px 32px -12px rgb(0 0 0 / 0.5);
+      --focus: #93c5fd;
+
+      --btn-github-bg: #f6f8fa;
+      --btn-github-ink: #1f2328;
+      --btn-oc-bg: #93c5fd;
+      --btn-oc-ink: #0c0a09;
+      --btn-kofi-bg: #fca5a5;
+      --btn-kofi-ink: #450a0a;
+      --btn-bmc-bg: #fde68a;
+      --btn-bmc-ink: #1a1a1a;
+      --btn-liberapay-bg: #fef08a;
+      --btn-liberapay-ink: #1a1a1a;
+      --btn-patreon-bg: #fca5a5;
+      --btn-patreon-ink: #450a0a;
     }
   }
 
+  :root[data-theme="dark"] {
+    --bg: #0c0a09;
+    --surface: #1c1917;
+    --surface-2: #292524;
+    --surface-hover: #322e2b;
+    --ink: #fafaf9;
+    --ink-2: #e7e5e4;
+    --muted: #c2bcb6;
+    --faint: #a8a29e;
+    --line: #44403c;
+    --line-2: #292524;
+    --accent: #93c5fd;
+    --accent-hover: #bfdbfe;
+    --accent-soft: #1e3a8a;
+    --accent-ink: #bfdbfe;
+    --success: #86efac;
+    --success-soft: #14532d;
+    --focus: #93c5fd;
+
+    --btn-github-bg: #f6f8fa;
+    --btn-github-ink: #1f2328;
+    --btn-oc-bg: #93c5fd;
+    --btn-oc-ink: #0c0a09;
+    --btn-kofi-bg: #fca5a5;
+    --btn-kofi-ink: #450a0a;
+    --btn-bmc-bg: #fde68a;
+    --btn-bmc-ink: #1a1a1a;
+    --btn-liberapay-bg: #fef08a;
+    --btn-liberapay-ink: #1a1a1a;
+    --btn-patreon-bg: #fca5a5;
+    --btn-patreon-ink: #450a0a;
+  }
+
   * { box-sizing: border-box; }
-  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 80px;
+  }
+
   body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 15px; line-height: 1.55;
-    color: var(--ink); background: var(--bg);
-    margin: 0; padding: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
-  code, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.92em; }
 
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; text-underline-offset: 2px; }
+  code, .mono {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.92em;
+  }
 
-  /* --- Layout --- */
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  a:hover { text-decoration-thickness: 2px; }
+  .btn, .identity .name a, .meta a, .recent a, .filter-toggle, .theme-option {
+    text-decoration: none;
+  }
+  .btn:hover, .identity .name a:hover, .meta a:hover, .recent a:hover {
+    text-decoration: underline;
+  }
+
+  /* Focus */
+  *:focus { outline: none; }
+  *:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: 4px;
+  }
+  .btn:focus-visible {
+    outline-offset: 3px;
+  }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    padding: 10px 16px;
+    background: var(--surface);
+    color: var(--ink);
+    border: 2px solid var(--focus);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    z-index: 100;
+    transform: translateY(-150%);
+    transition: transform 150ms ease;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+    text-decoration: none;
+  }
+
+  /* Visually hidden */
+  .sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+
+  /* Layout */
   .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-  /* --- Header --- */
-  header {
-    padding: 80px 0 48px;
-    background:
-      radial-gradient(1200px 400px at 50% -120px, rgba(37, 99, 235, 0.08), transparent 60%),
-      linear-gradient(to bottom, transparent, var(--bg));
+  /* Top bar with theme toggle */
+  .topbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 0 0;
+  }
+
+  .theme-switch {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .theme-option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0 12px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 999px;
+    cursor: pointer;
+    gap: 6px;
+  }
+  .theme-option:hover { color: var(--ink); }
+  .theme-option[aria-pressed="true"] {
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+  }
+  .theme-option svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* Header */
+  header[role="banner"] {
+    padding: 24px 0 56px;
     border-bottom: 1px solid var(--line);
   }
-  .hero {
-    text-align: center; max-width: 680px; margin: 0 auto;
-  }
+  .hero { text-align: center; max-width: 680px; margin: 32px auto 0; }
   .eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
-    color: var(--muted); text-transform: uppercase;
-    padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
     background: var(--surface);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
   .eyebrow::before {
-    content: ""; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--success); box-shadow: 0 0 0 3px var(--success-soft);
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
   }
   h1 {
     font-size: clamp(32px, 5vw, 46px);
-    font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
     margin: 0 0 16px;
   }
-  h1 .accent { color: var(--accent); }
+  h1 .accent { color: var(--accent-ink); }
   .sub {
-    color: var(--ink-2); font-size: 17px; line-height: 1.55;
-    margin: 0 auto 36px; max-width: 560px;
+    color: var(--ink-2);
+    font-size: 17px;
+    line-height: 1.55;
+    margin: 0 auto 36px;
+    max-width: 560px;
   }
 
   .stats {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px; max-width: 720px; margin: 0 auto;
+    gap: 12px;
+    max-width: 720px;
+    margin: 0 auto;
   }
   @media (max-width: 640px) {
     .stats { grid-template-columns: repeat(2, 1fr); }
@@ -116,61 +312,116 @@
     border-radius: var(--radius);
     padding: 16px 18px;
     text-align: left;
-    box-shadow: var(--shadow-sm);
+    display: grid;
+    grid-template-rows: auto auto;
+    margin: 0;
   }
+  .stat dt, .stat dd { margin: 0; }
   .stat .num {
-    font-size: 24px; font-weight: 700; letter-spacing: -0.02em;
-    color: var(--ink); line-height: 1.1;
+    grid-row: 1;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.1;
     font-variant-numeric: tabular-nums;
   }
   .stat .label {
-    font-size: 12px; color: var(--muted); margin-top: 4px;
-    text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500;
+    grid-row: 2;
+    font-size: 12px;
+    color: var(--ink-2);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 500;
   }
 
-  /* --- Filters --- */
+  /* Filter bar */
   .filter-bar {
-    position: sticky; top: 0; z-index: 20;
-    background: rgba(250, 250, 249, 0.85);
-    backdrop-filter: saturate(180%) blur(12px);
-    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg);
     border-bottom: 1px solid var(--line);
   }
-  @media (prefers-color-scheme: dark) {
-    .filter-bar { background: rgba(12, 10, 9, 0.85); }
+  @supports (backdrop-filter: blur(12px)) {
+    .filter-bar {
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+    }
   }
   .filters {
-    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
     padding: 14px 0;
   }
   .filter {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 13px; color: var(--ink-2); font-weight: 500;
-    background: var(--surface); border: 1px solid var(--line);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 500;
+    background: var(--surface);
+    border: 1px solid var(--line);
     border-radius: var(--radius-sm);
-    padding: 6px 10px;
-    transition: border-color 120ms ease;
+    padding: 8px 12px;
+    min-height: 36px;
   }
-  .filter:focus-within { border-color: var(--accent); }
-  .filter .k { color: var(--muted); font-weight: 400; }
-  .filter input[type="number"], .filter input[type="search"] {
-    font: inherit; background: transparent; border: 0; outline: 0; color: var(--ink);
+  .filter:focus-within {
+    border-color: var(--focus);
+    box-shadow: 0 0 0 2px var(--accent-soft);
+  }
+  .filter .k { color: var(--ink-2); font-weight: 500; }
+  .filter input[type="number"],
+  .filter input[type="search"] {
+    font: inherit;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: var(--ink);
     padding: 0;
+    min-height: 20px;
   }
   .filter input[type="number"] { width: 48px; text-align: right; }
   .filter input[type="search"] { width: 160px; }
-  .filter.toggle { cursor: pointer; user-select: none; padding: 6px 12px; }
-  .filter.toggle input { position: absolute; opacity: 0; pointer-events: none; }
-  .filter.toggle:has(input:checked) {
-    background: var(--accent-soft); border-color: var(--accent); color: var(--accent);
+  .filter-toggle {
+    cursor: pointer;
+    user-select: none;
+    padding: 8px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+    min-height: 36px;
+  }
+  .filter-toggle input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .filter-toggle:has(input:checked) {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent-ink);
   }
   .count {
-    margin-left: auto; color: var(--muted); font-size: 13px;
+    margin-left: auto;
+    color: var(--ink-2);
+    font-size: 13px;
     font-variant-numeric: tabular-nums;
   }
   .count b { color: var(--ink); font-weight: 600; }
 
-  /* --- Cards --- */
+  /* Cards */
   main { padding: 32px 0 48px; }
   .grid { display: grid; gap: 12px; }
 
@@ -186,331 +437,445 @@
     transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
   }
   .card:hover {
-    border-color: var(--line);
+    border-color: var(--ink-2);
     box-shadow: var(--shadow);
     transform: translateY(-1px);
+  }
+  .card:focus-within {
+    border-color: var(--focus);
+    box-shadow: 0 0 0 2px var(--accent-soft);
   }
   .card.hidden { display: none; }
 
   .avatar-wrap { position: relative; }
   .avatar {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: var(--line-2);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--surface-2);
     display: block;
     object-fit: cover;
   }
   .rank-badge {
-    position: absolute; bottom: -4px; right: -4px;
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: 999px; padding: 2px 7px;
-    font-size: 10px; font-weight: 600; color: var(--muted);
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ink-2);
     font-variant-numeric: tabular-nums;
-    min-width: 22px; text-align: center;
-    box-shadow: var(--shadow-sm);
+    min-width: 24px;
+    text-align: center;
   }
 
   .identity .name {
-    font-size: 16px; font-weight: 600; color: var(--ink);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
     letter-spacing: -0.01em;
   }
   .identity .name a { color: inherit; }
   .identity .meta {
-    font-size: 13px; color: var(--muted);
+    font-size: 13px;
+    color: var(--ink-2);
     margin-top: 3px;
-    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
   }
-  .identity .meta a { color: var(--muted); }
-  .identity .meta a:hover { color: var(--accent); }
+  .identity .meta a { color: var(--ink-2); }
   .identity .meta .sep { color: var(--faint); }
-  .identity .meta .employer::before { content: "·"; margin-right: 8px; color: var(--faint); }
+  .identity .meta .employer::before {
+    content: "at ";
+    color: var(--faint);
+  }
 
   .contribs {
-    display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
   }
   .chip {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; font-weight: 500;
-    padding: 4px 10px; border-radius: 999px;
-    background: var(--line-2); color: var(--ink-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--ink);
     font-variant-numeric: tabular-nums;
+    border: 1px solid var(--line);
+    min-height: 24px;
   }
   .chip b { color: var(--ink); font-weight: 600; }
-  .chip.core { background: var(--accent-soft); color: var(--accent); }
-  .chip.core b { color: var(--accent); }
+  .chip.core {
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+    border-color: transparent;
+  }
+  .chip.core b { color: var(--accent-ink); }
   .chip.gb {
-    background: color-mix(in srgb, var(--success) 12%, transparent);
+    background: var(--success-soft);
     color: var(--success);
+    border-color: transparent;
   }
   .chip.gb b { color: var(--success); }
 
   .recent {
-    margin-top: 12px; font-size: 12.5px; color: var(--muted);
-    border-top: 1px solid var(--line-2); padding-top: 10px;
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    border-top: 1px solid var(--line-2);
+    padding-top: 10px;
   }
   .recent ul { list-style: none; padding: 0; margin: 0; }
   .recent li {
     padding: 2px 0;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     max-width: 100%;
   }
   .recent .src {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.04em;
-    text-transform: uppercase; color: var(--faint);
-    padding: 1px 6px; border-radius: 4px;
-    background: var(--line-2); margin-right: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    margin-right: 8px;
     font-variant-numeric: tabular-nums;
   }
   .recent a { color: var(--ink-2); }
-  .recent a:hover { color: var(--accent); }
 
   .actions {
-    display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
     min-width: 160px;
   }
   @media (max-width: 680px) {
     .card { grid-template-columns: 48px 1fr; }
     .avatar { width: 48px; height: 48px; }
-    .actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; min-width: 0; margin-top: 4px; }
+    .actions {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      min-width: 0;
+      margin-top: 4px;
+    }
   }
 
   .btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12.5px; font-weight: 500;
-    padding: 6px 12px; border-radius: 999px;
-    border: 1px solid var(--line); background: var(--surface);
-    color: var(--ink-2); text-decoration: none;
-    transition: all 120ms ease;
-    white-space: nowrap;
-  }
-  .btn:hover {
-    text-decoration: none;
-    border-color: var(--ink-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    min-height: 32px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: var(--surface);
     color: var(--ink);
-    transform: translateY(-1px);
+    white-space: nowrap;
+    transition: transform 120ms ease, box-shadow 120ms ease;
   }
-  .btn .icon { width: 13px; height: 13px; flex-shrink: 0; }
-  .btn.github { background: #24292e; color: white; border-color: #24292e; }
-  .btn.github:hover { background: #32383f; border-color: #32383f; color: white; }
-  .btn.opencollective { background: #297eff; color: white; border-color: #297eff; }
-  .btn.opencollective:hover { background: #1a6fee; border-color: #1a6fee; color: white; }
-  .btn.kofi { background: #ff5e5b; color: white; border-color: #ff5e5b; }
-  .btn.kofi:hover { background: #f04a47; border-color: #f04a47; color: white; }
-  .btn.bmc { background: #ffdd00; color: #111; border-color: #ffdd00; }
-  .btn.bmc:hover { background: #f0d000; border-color: #f0d000; }
-  .btn.liberapay { background: #f6c915; color: #111; border-color: #f6c915; }
-  .btn.liberapay:hover { background: #e5b800; border-color: #e5b800; }
-  .btn.patreon { background: #ff424d; color: white; border-color: #ff424d; }
-  .btn.patreon:hover { background: #ee313c; border-color: #ee313c; color: white; }
+  .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+  .btn.github      { background: var(--btn-github-bg);     color: var(--btn-github-ink); }
+  .btn.opencollective { background: var(--btn-oc-bg);       color: var(--btn-oc-ink); }
+  .btn.kofi        { background: var(--btn-kofi-bg);        color: var(--btn-kofi-ink); }
+  .btn.bmc         { background: var(--btn-bmc-bg);         color: var(--btn-bmc-ink); }
+  .btn.liberapay   { background: var(--btn-liberapay-bg);   color: var(--btn-liberapay-ink); }
+  .btn.patreon     { background: var(--btn-patreon-bg);     color: var(--btn-patreon-ink); }
 
   .no-sponsor {
-    font-size: 12px; color: var(--faint); font-style: italic;
-    padding: 6px 10px; border: 1px dashed var(--line); border-radius: 999px;
+    font-size: 12px;
+    color: var(--ink-2);
+    font-style: italic;
+    padding: 6px 12px;
+    border: 1px dashed var(--line);
+    border-radius: 999px;
   }
 
   .empty {
-    display: none; text-align: center; padding: 64px 24px;
-    color: var(--muted); font-size: 15px;
+    display: none;
+    text-align: center;
+    padding: 64px 24px;
+    color: var(--ink-2);
+    font-size: 15px;
   }
   .empty.show { display: block; }
 
-  /* --- Footer --- */
-  footer {
-    border-top: 1px solid var(--line); padding: 48px 0 64px;
-    color: var(--muted); font-size: 13.5px; line-height: 1.6;
+  /* Footer */
+  footer[role="contentinfo"] {
+    border-top: 1px solid var(--line);
+    padding: 48px 0 64px;
+    color: var(--ink-2);
+    font-size: 13.5px;
+    line-height: 1.6;
   }
-  footer .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-  @media (max-width: 640px) { footer .cols { grid-template-columns: 1fr; } }
-  footer h3 {
-    font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
-    color: var(--ink-2); margin: 0 0 8px; font-weight: 600;
+  footer .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 640px) {
+    footer .cols { grid-template-columns: 1fr; }
+  }
+  footer h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    margin: 0 0 8px;
+    font-weight: 600;
   }
   footer p { margin: 6px 0; }
   footer code {
-    background: var(--line-2); padding: 1px 6px; border-radius: 4px;
-    font-size: 12px; color: var(--ink-2);
+    background: var(--surface-2);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--ink);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .card:hover { transform: none; }
+    .btn:hover { transform: none; }
+    .skip-link { transition: none; }
+  }
+
+  /* Forced-colors (Windows high contrast) */
+  @media (forced-colors: active) {
+    .btn, .filter, .filter-toggle, .chip, .eyebrow, .stat, .card,
+    .no-sponsor, .recent .src, .rank-badge {
+      border: 1px solid CanvasText;
+    }
+    *:focus-visible { outline: 3px solid Highlight; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="container">
-    <div class="hero">
-      <span class="eyebrow">Generated {{ generated_at }}</span>
-      <h1>Support the <span class="accent">people</span><br>who ship WordPress</h1>
-      <p class="sub">
-        A directory of individual contributors to WordPress Core and Gutenberg,
-        ranked by contribution activity over the last {{ days }} days. Built to
-        recognize and enable direct support of the humans behind the project.
-      </p>
-      <div class="stats">
-        <div class="stat">
-          <div class="num">{{ "{:,}".format(rows|length) }}</div>
-          <div class="label">contributors</div>
-        </div>
-        <div class="stat">
-          <div class="num">{{ "{:,}".format(core_total) }}</div>
-          <div class="label">core commits</div>
-        </div>
-        <div class="stat">
-          <div class="num">{{ "{:,}".format(gb_total) }}</div>
-          <div class="label">Gutenberg PRs</div>
-        </div>
-        <div class="stat">
-          <div class="num">{{ sponsored_count }}</div>
-          <div class="label">accept sponsorships</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+<a href="#main" class="skip-link">Skip to contributor list</a>
 
-<div class="filter-bar">
-  <div class="container">
-    <div class="filters">
-      <label class="filter">
-        <span class="k">core ≥</span>
-        <input type="number" id="f-core" min="0" value="0">
-      </label>
-      <label class="filter">
-        <span class="k">Gutenberg ≥</span>
-        <input type="number" id="f-gb" min="0" value="0">
-      </label>
-      <label class="filter">
-        <span class="k">total ≥</span>
-        <input type="number" id="f-total" min="0" value="5">
-      </label>
-      <label class="filter toggle">
-        <input type="checkbox" id="f-sponsor"> sponsorable only
-      </label>
-      <label class="filter toggle">
-        <input type="checkbox" id="f-mapped"> mapped only
-      </label>
-      <label class="filter">
-        <span class="k">🔍</span>
-        <input type="search" id="f-search" placeholder="name or handle…">
-      </label>
-      <span class="count"><b id="count-shown">0</b> of <b id="count-total">0</b></span>
+<div class="container">
+  <div class="topbar">
+    <div class="theme-switch" role="group" aria-label="Color theme">
+      <button type="button" class="theme-option" data-theme-value="light" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        Light
+      </button>
+      <button type="button" class="theme-option" data-theme-value="dark" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        Dark
+      </button>
+      <button type="button" class="theme-option" data-theme-value="system" aria-pressed="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+        System
+      </button>
     </div>
   </div>
 </div>
 
-<main>
+<header role="banner">
   <div class="container">
-    <div class="grid">
-      <div class="empty" id="empty">No contributors match these filters.</div>
+    <div class="hero">
+      <span class="eyebrow" aria-label="Site updated {{ generated_at }}">Generated {{ generated_at }}</span>
+      <h1>Support the <span class="accent">people</span><br>who ship WordPress</h1>
+      <p class="sub">
+        A directory of individual contributors to WordPress Core and Gutenberg, ranked by contribution activity over the last {{ days }} days. Built to recognize and enable direct support of the humans behind the project.
+      </p>
+      <dl class="stats" aria-label="Directory statistics">
+        <div class="stat">
+          <dt class="label">Contributors</dt>
+          <dd class="num">{{ "{:,}".format(rows|length) }}</dd>
+        </div>
+        <div class="stat">
+          <dt class="label">Core commits</dt>
+          <dd class="num">{{ "{:,}".format(core_total) }}</dd>
+        </div>
+        <div class="stat">
+          <dt class="label">Gutenberg PRs</dt>
+          <dd class="num">{{ "{:,}".format(gb_total) }}</dd>
+        </div>
+        <div class="stat">
+          <dt class="label">Accept sponsorships</dt>
+          <dd class="num">{{ sponsored_count }}</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<section class="filter-bar" aria-label="Filter contributors">
+  <div class="container">
+    <form class="filters" role="search" aria-label="Filter contributors" onsubmit="return false;">
+      <label class="filter">
+        <span class="k">Core props at least</span>
+        <input type="number" id="f-core" min="0" value="0" inputmode="numeric">
+      </label>
+      <label class="filter">
+        <span class="k">Gutenberg PRs at least</span>
+        <input type="number" id="f-gb" min="0" value="0" inputmode="numeric">
+      </label>
+      <label class="filter">
+        <span class="k">Total at least</span>
+        <input type="number" id="f-total" min="0" value="5" inputmode="numeric">
+      </label>
+      <label class="filter-toggle">
+        <input type="checkbox" id="f-sponsor">
+        <span>Sponsorable only</span>
+      </label>
+      <label class="filter-toggle">
+        <input type="checkbox" id="f-mapped">
+        <span>Mapped only</span>
+      </label>
+      <label class="filter">
+        <span class="k">Search</span>
+        <input type="search" id="f-search" placeholder="Name or handle" aria-label="Search by name or handle">
+      </label>
+      <p class="count" aria-live="polite" aria-atomic="true">
+        <span class="sr-only">Showing </span>
+        <b id="count-shown">0</b>
+        <span> of </span>
+        <b id="count-total">0</b>
+        <span class="sr-only"> contributors</span>
+      </p>
+    </form>
+  </div>
+</section>
+
+<main id="main">
+  <div class="container">
+    <h2 class="sr-only">Contributors, ranked by activity</h2>
+    <ol class="grid" role="list">
+      <li class="empty" id="empty" role="status">No contributors match these filters.</li>
       {% for r in rows %}
+      <li>
       <article class="card"
         data-core="{{ r.core_props }}"
         data-gb="{{ r.gutenberg_prs }}"
         data-total="{{ r.score }}"
         data-sponsor="{{ 1 if r.sponsor_links else 0 }}"
         data-mapped="{{ 1 if r.handle in mapped_handles else 0 }}"
-        data-search="{{ (r.handle + ' ' + r.name + ' ' + (r.github or ''))|lower }}">
+        data-search="{{ (r.handle + ' ' + r.name + ' ' + (r.github or ''))|lower }}"
+        aria-labelledby="h-{{ r.handle }}">
         <div class="avatar-wrap">
           {% if r.github %}
-            <img class="avatar" src="https://github.com/{{ r.github }}.png?size=112" alt="" loading="lazy">
-          {% elif r.wporg_profile %}
-            <img class="avatar" src="https://secure.gravatar.com/avatar/?s=112&d=mp" alt="" loading="lazy">
+            <img class="avatar" src="https://github.com/{{ r.github }}.png?size=112" alt="" loading="lazy" width="56" height="56">
           {% else %}
-            <div class="avatar"></div>
+            <div class="avatar" aria-hidden="true"></div>
           {% endif %}
-          <span class="rank-badge">#{{ loop.index }}</span>
+          <span class="rank-badge" aria-label="Rank">#{{ loop.index }}</span>
         </div>
 
         <div class="identity">
-          <div class="name">
+          <h3 class="name" id="h-{{ r.handle }}">
             {% if r.wporg_profile %}<a href="{{ r.wporg_profile }}">{{ r.name }}</a>
             {% elif r.github %}<a href="https://github.com/{{ r.github }}">{{ r.name }}</a>
             {% else %}{{ r.name }}{% endif %}
-          </div>
+          </h3>
           <div class="meta">
             {% if r.wporg_profile %}
-              <a href="{{ r.wporg_profile }}">@{{ r.handle }}</a>
+              <a href="{{ r.wporg_profile }}" aria-label="wp.org profile of {{ r.name }}">@{{ r.handle }}</a>
             {% endif %}
             {% if r.github %}
-              {% if r.wporg_profile %}<span class="sep">·</span>{% endif %}
-              <a href="https://github.com/{{ r.github }}">github.com/{{ r.github }}</a>
+              {% if r.wporg_profile %}<span class="sep" aria-hidden="true">·</span>{% endif %}
+              <a href="https://github.com/{{ r.github }}" aria-label="GitHub profile of {{ r.name }}">github.com/{{ r.github }}</a>
             {% endif %}
             {% if r.website %}
-              <span class="sep">·</span><a href="{{ r.website }}">site</a>
+              <span class="sep" aria-hidden="true">·</span><a href="{{ r.website }}" aria-label="Website of {{ r.name }}" rel="nofollow noopener">Website</a>
             {% endif %}
             {% if r.employer %}
-              <span class="employer">at {{ r.employer }}</span>
+              <span class="employer">{{ r.employer }}</span>
             {% endif %}
           </div>
 
-          <div class="contribs">
+          <div class="contribs" aria-label="Contribution totals">
             {% if r.core_props %}
-            <span class="chip core"><b>{{ r.core_props }}</b> core props</span>
+            <span class="chip core"><b>{{ r.core_props }}</b>&nbsp;core props</span>
             {% endif %}
             {% if r.gutenberg_prs %}
-            <span class="chip gb"><b>{{ r.gutenberg_prs }}</b> Gutenberg PRs</span>
+            <span class="chip gb"><b>{{ r.gutenberg_prs }}</b>&nbsp;Gutenberg PRs</span>
             {% endif %}
           </div>
 
           {% if r.recent_core or r.recent_gb %}
           <div class="recent">
+            <h4 class="sr-only">Recent activity</h4>
             <ul>
               {% for c in r.recent_core %}
-              <li><span class="src">core</span><a href="https://github.com/WordPress/wordpress-develop/commit/{{ c.sha }}" title="{{ c.summary }}">{{ c.summary }}</a></li>
+              <li><span class="src" aria-label="Source: Core">core</span><a href="https://github.com/WordPress/wordpress-develop/commit/{{ c.sha }}" title="{{ c.summary }}">{{ c.summary }}</a></li>
               {% endfor %}
               {% for p in r.recent_gb %}
-              <li><span class="src">gb</span><a href="{{ p.url }}" title="{{ p.title }}">{{ p.title }}</a></li>
+              <li><span class="src" aria-label="Source: Gutenberg">gb</span><a href="{{ p.url }}" title="{{ p.title }}">{{ p.title }}</a></li>
               {% endfor %}
             </ul>
           </div>
           {% endif %}
         </div>
 
-        <div class="actions">
+        <div class="actions" aria-label="Sponsor {{ r.name }}">
           {% if r.sponsor_links %}
             {% for s in r.sponsor_links %}
-            <a class="btn {{ s.platform }}" href="{{ s.url }}" rel="nofollow noopener">
-              {{ s.label }}
-            </a>
+            <a class="btn {{ s.platform }}" href="{{ s.url }}" rel="nofollow noopener"
+               aria-label="Sponsor {{ r.name }} on {{ s.label }}">{{ s.label }}</a>
             {% endfor %}
           {% else %}
-            <span class="no-sponsor">no sponsor link on file</span>
+            <span class="no-sponsor">No sponsor link on file</span>
           {% endif %}
         </div>
       </article>
+      </li>
       {% endfor %}
-    </div>
+    </ol>
   </div>
 </main>
 
-<footer>
+<footer role="contentinfo">
   <div class="container">
     <div class="cols">
       <div>
-        <h3>How this was built</h3>
+        <h2>How this was built</h2>
         <p>
-          Data joined from three public sources: WordPress Core commits on
-          <code>github.com/WordPress/wordpress-develop</code> (parsed for
-          <code>Props</code> attributions), merged PRs in
-          <code>github.com/WordPress/gutenberg</code>, and
-          <code>profiles.wordpress.org/{handle}</code> pages for GitHub/website
-          links. GitHub Sponsors listings are live-verified via the GraphQL API.
+          Data joined from three public sources: WordPress Core commits on <code>github.com/WordPress/wordpress-develop</code> (parsed for <code>Props</code> attributions), merged PRs in <code>github.com/WordPress/gutenberg</code>, and <code>profiles.wordpress.org/{handle}</code> pages for GitHub and website links. GitHub Sponsors listings are live-verified via the GraphQL API.
         </p>
         <p>
-          Contribution counts are a rough signal, not a complete picture. They miss
-          docs, design, translations, community support, plugin/theme repos, and
-          everything else that keeps the project running.
+          Contribution counts are a rough signal, not a complete picture. They miss docs, design, translations, community support, plugin and theme repos, and everything else that keeps the project running.
         </p>
       </div>
       <div>
-        <h3>Contribute to this directory</h3>
+        <h2>Contribute to this directory</h2>
         <p>
-          Add or update sponsor links by editing
-          <code>data/contributors.yaml</code> and submitting a PR. No wp.org
-          cooperation is required for this site to exist. It runs entirely on
-          public data.
+          Add or update sponsor links by editing <code>data/contributors.yaml</code> and submitting a PR. No wp.org cooperation is required for this site to exist. It runs entirely on public data.
         </p>
         <p>
-          The goal of the project, raised on WordPress.org Slack, is to recognize
-          individual contributors rather than just the companies that sponsor
-          them.
+          The goal of the project, raised on WordPress.org Slack, is to recognize individual contributors rather than just the companies that sponsor them.
+        </p>
+        <p>
+          Source on <a href="https://github.com/yani-/wp-contributor-sponsors">GitHub</a>.
         </p>
       </div>
     </div>
@@ -519,17 +884,58 @@
 
 <script>
 (() => {
-  const cards = Array.from(document.querySelectorAll('.card'));
-  document.getElementById('count-total').textContent = cards.length;
-  const empty = document.getElementById('empty');
+  // Theme switcher
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll(".theme-option");
+  const mql = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function currentChoice() {
+    return localStorage.getItem("theme") || "system";
+  }
+
+  function applyTheme(choice) {
+    if (choice === "system") {
+      delete root.dataset.theme;
+    } else {
+      root.dataset.theme = choice;
+    }
+    buttons.forEach((b) => {
+      b.setAttribute("aria-pressed", b.dataset.themeValue === choice ? "true" : "false");
+    });
+  }
+
+  buttons.forEach((b) => {
+    b.addEventListener("click", () => {
+      const choice = b.dataset.themeValue;
+      if (choice === "system") {
+        localStorage.removeItem("theme");
+      } else {
+        localStorage.setItem("theme", choice);
+      }
+      applyTheme(choice);
+    });
+  });
+
+  applyTheme(currentChoice());
+  mql.addEventListener("change", () => {
+    if (currentChoice() === "system") applyTheme("system");
+  });
+})();
+
+(() => {
+  // Filters
+  const cards = Array.from(document.querySelectorAll(".card"));
+  const items = cards.map((c) => c.closest("li"));
+  document.getElementById("count-total").textContent = cards.length;
+  const empty = document.getElementById("empty");
 
   const f = {
-    core: document.getElementById('f-core'),
-    gb: document.getElementById('f-gb'),
-    total: document.getElementById('f-total'),
-    sponsor: document.getElementById('f-sponsor'),
-    mapped: document.getElementById('f-mapped'),
-    search: document.getElementById('f-search'),
+    core: document.getElementById("f-core"),
+    gb: document.getElementById("f-gb"),
+    total: document.getElementById("f-total"),
+    sponsor: document.getElementById("f-sponsor"),
+    mapped: document.getElementById("f-mapped"),
+    search: document.getElementById("f-search"),
   };
 
   function apply() {
@@ -541,46 +947,49 @@
     const q = f.search.value.trim().toLowerCase();
 
     let shown = 0;
-    for (const c of cards) {
+    for (let i = 0; i < cards.length; i++) {
+      const c = cards[i];
+      const li = items[i];
       const visible =
         +c.dataset.core >= minCore &&
         +c.dataset.gb >= minGb &&
         +c.dataset.total >= minTotal &&
-        (!sponsorOnly || c.dataset.sponsor === '1') &&
-        (!mappedOnly || c.dataset.mapped === '1') &&
+        (!sponsorOnly || c.dataset.sponsor === "1") &&
+        (!mappedOnly || c.dataset.mapped === "1") &&
         (!q || c.dataset.search.includes(q));
-      c.classList.toggle('hidden', !visible);
+      c.classList.toggle("hidden", !visible);
+      if (li) li.hidden = !visible;
       if (visible) {
         shown++;
-        const rk = c.querySelector('.rank-badge');
-        if (rk) rk.textContent = '#' + shown;
+        const rk = c.querySelector(".rank-badge");
+        if (rk) rk.textContent = "#" + shown;
       }
     }
-    document.getElementById('count-shown').textContent = shown;
-    empty.classList.toggle('show', shown === 0);
+    document.getElementById("count-shown").textContent = shown;
+    empty.classList.toggle("show", shown === 0);
 
     const state = new URLSearchParams();
-    if (minCore) state.set('core', minCore);
-    if (minGb) state.set('gb', minGb);
-    if (minTotal !== 5) state.set('total', minTotal);
-    if (sponsorOnly) state.set('sponsor', '1');
-    if (mappedOnly) state.set('mapped', '1');
-    if (q) state.set('q', q);
+    if (minCore) state.set("core", minCore);
+    if (minGb) state.set("gb", minGb);
+    if (minTotal !== 5) state.set("total", minTotal);
+    if (sponsorOnly) state.set("sponsor", "1");
+    if (mappedOnly) state.set("mapped", "1");
+    if (q) state.set("q", q);
     const qs = state.toString();
-    history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+    history.replaceState(null, "", qs ? "?" + qs : location.pathname);
   }
 
   const params = new URLSearchParams(location.search);
-  if (params.has('core')) f.core.value = params.get('core');
-  if (params.has('gb')) f.gb.value = params.get('gb');
-  if (params.has('total')) f.total.value = params.get('total');
-  if (params.get('sponsor') === '1') f.sponsor.checked = true;
-  if (params.get('mapped') === '1') f.mapped.checked = true;
-  if (params.has('q')) f.search.value = params.get('q');
+  if (params.has("core")) f.core.value = params.get("core");
+  if (params.has("gb")) f.gb.value = params.get("gb");
+  if (params.has("total")) f.total.value = params.get("total");
+  if (params.get("sponsor") === "1") f.sponsor.checked = true;
+  if (params.get("mapped") === "1") f.mapped.checked = true;
+  if (params.has("q")) f.search.value = params.get("q");
 
   for (const el of Object.values(f)) {
-    el.addEventListener('input', apply);
-    el.addEventListener('change', apply);
+    el.addEventListener("input", apply);
+    el.addEventListener("change", apply);
   }
   apply();
 })();
