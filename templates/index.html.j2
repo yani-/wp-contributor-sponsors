@@ -217,7 +217,8 @@
   .topbar {
     display: flex;
     justify-content: flex-end;
-    padding: 16px 0 0;
+    align-items: center;
+    padding: 16px 0;
   }
 
   .theme-switch {
@@ -254,10 +255,10 @@
 
   /* Header */
   header[role="banner"] {
-    padding: 24px 0 56px;
+    padding: 8px 0 56px;
     border-bottom: 1px solid var(--line);
   }
-  .hero { text-align: center; max-width: 680px; margin: 32px auto 0; }
+  .hero { text-align: center; max-width: 680px; margin: 0 auto; }
   .eyebrow {
     display: inline-flex;
     align-items: center;
@@ -334,6 +335,13 @@
     text-transform: uppercase;
     letter-spacing: 0.04em;
     font-weight: 500;
+  }
+  .meta-update {
+    text-align: center;
+    color: var(--faint);
+    font-size: 12px;
+    margin: 20px 0 0;
+    font-variant-numeric: tabular-nums;
   }
 
   /* Filter bar */
@@ -709,10 +717,10 @@
 <header role="banner">
   <div class="container">
     <div class="hero">
-      <span class="eyebrow" aria-label="Site updated {{ generated_at }}">Generated {{ generated_at }}</span>
+      <span class="eyebrow">An open directory</span>
       <h1>Support the <span class="accent">people</span><br>who ship WordPress</h1>
       <p class="sub">
-        A directory of individual contributors to WordPress Core and Gutenberg, ranked by contribution activity over the last {{ days }} days. Built to recognize and enable direct support of the humans behind the project.
+        A ranked directory of individual contributors to WordPress Core and Gutenberg over the last {{ days }} days. Built to make it easy to support the humans behind the project, not just the companies that employ them.
       </p>
       <dl class="stats" aria-label="Directory statistics">
         <div class="stat">
@@ -732,6 +740,7 @@
           <dd class="num">{{ sponsored_count }}</dd>
         </div>
       </dl>
+      <p class="meta-update"><small>Last updated {{ generated_at }}</small></p>
     </div>
   </div>
 </header>
