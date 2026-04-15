@@ -1,0 +1,31 @@
+name: Feature request
+description: Propose a new feature or improvement.
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      placeholder: Describe the user or contributor experience this would improve.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      placeholder: How do you imagine this working?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      description: See README's "Known limitations" + CONTRIBUTING's "What's in scope".
+      options:
+        - label: This doesn't require a backend, database, or authenticated wp.org access.
+          required: true

@@ -1,0 +1,30 @@
+name: Bug report
+description: Something in the site or pipeline is broken.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What went wrong
+      placeholder: Describe the bug clearly. What did you expect? What actually happened?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to ...
+        2. Click ...
+        3. See error ...
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: Browser / OS, or which pipeline stage if this is a script bug.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs, screenshots, or output
+      render: shell

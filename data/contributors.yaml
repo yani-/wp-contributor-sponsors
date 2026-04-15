@@ -1,0 +1,116 @@
+# Hand-curated mapping of wp.org handles to sponsor destinations.
+#
+# Each entry is keyed by the wp.org handle (lowercase). Fields:
+#   name:              Display name (optional; falls back to wp.org handle)
+#   github:            GitHub username (used for avatar + to join Gutenberg PR data)
+#   github_sponsors:   true if a github.com/sponsors/{github} page exists (verify manually)
+#   open_collective:   slug on opencollective.com/{slug}
+#   ko_fi:             slug on ko-fi.com/{slug}
+#   buy_me_a_coffee:   slug on buymeacoffee.com/{slug}
+#   liberapay:         slug on liberapay.com/{slug}
+#   patreon:           slug on patreon.com/{slug}
+#   website:           personal site
+#   employer:          current employer (displayed as secondary metadata, never headline)
+#
+# Start minimal and honest. Only fill fields you can verify. Contributors
+# can submit PRs to add their own sponsor links.
+
+westonruter:
+  name: Weston Ruter
+  github: westonruter
+  website: https://weston.ruter.net/
+
+peterwilsoncc:
+  name: Peter Wilson
+  github: peterwilsoncc
+  website: https://peterwilson.cc/
+
+sergeybiryukov:
+  name: Sergey Biryukov
+  github: SergeyBiryukov
+
+audrasjb:
+  name: Jb Audras
+  github: audrasjb
+  website: https://audrasjb.com/
+
+johnbillion:
+  name: John Blackbourn
+  github: johnbillion
+  github_sponsors: true
+  website: https://johnblackbourn.com/
+
+desrosj:
+  name: Jonathan Desrosiers
+  github: desrosj
+
+jorbin:
+  name: Aaron Jorbin
+  github: aaronjorbin
+
+swissspidy:
+  name: Pascal Birchler
+  github: swissspidy
+  github_sponsors: true
+
+dmsnell:
+  name: Dennis Snell
+  github: dmsnell
+
+joedolson:
+  name: Joe Dolson
+  github: joedolson
+  website: https://www.joedolson.com/
+
+mukesh27:
+  github: mukesh27
+
+sabernhardt:
+  github: sabernhardt
+
+huzaifaalmesbah:
+  name: Huzaifa Al Mesbah
+  github: Huzaifaalmesbah
+
+wildworks:
+  github: t-hamano
+
+mirka:
+  name: Mirka
+  github: mirka
+
+mamaduka:
+  name: George Mamadashvili
+  github: Mamaduka
+
+ntsekouras:
+  name: Nik Tsekouras
+  github: ntsekouras
+
+jsnajdr:
+  name: Jarda Snajdr
+  github: jsnajdr
+
+ellatrix:
+  name: Ella van Durpe
+  github: ellatrix
+
+jorgefilipecosta:
+  name: Jorge Costa
+  github: jorgefilipecosta
+
+ramonjd:
+  name: Ramon Dodd
+  github: ramonjd
+
+talldan:
+  name: Daniel Richards
+  github: talldan
+
+andrewserong:
+  name: Andrew Serong
+  github: andrewserong
+
+adamsilverstein:
+  name: Adam Silverstein
+  github: adamsilverstein

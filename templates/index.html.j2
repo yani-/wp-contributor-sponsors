@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WordPress Contributor Sponsors</title>
+<meta name="description" content="A directory of WordPress Core and Gutenberg contributors with direct sponsorship links. Support the individuals who ship WordPress.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --surface-hover: #f7f7f6;
+    --ink: #0c0a09;
+    --ink-2: #44403c;
+    --muted: #78716c;
+    --faint: #a8a29e;
+    --line: #e7e5e4;
+    --line-2: #f5f5f4;
+    --accent: #2563eb;
+    --accent-soft: #eff6ff;
+    --wp-blue: #3858e9;
+    --success: #16a34a;
+    --success-soft: #f0fdf4;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+    --shadow-lg: 0 10px 32px -12px rgb(0 0 0 / 0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c0a09;
+      --surface: #1c1917;
+      --surface-hover: #292524;
+      --ink: #fafaf9;
+      --ink-2: #d6d3d1;
+      --muted: #a8a29e;
+      --faint: #78716c;
+      --line: #292524;
+      --line-2: #1c1917;
+      --accent: #60a5fa;
+      --accent-soft: #172554;
+      --success: #4ade80;
+      --success-soft: #14532d;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+      --shadow-lg: 0 10px 32px -12px rgb(0 0 0 / 0.5);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px; line-height: 1.55;
+    color: var(--ink); background: var(--bg);
+    margin: 0; padding: 0;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  code, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.92em; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+  /* --- Layout --- */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* --- Header --- */
+  header {
+    padding: 80px 0 48px;
+    background:
+      radial-gradient(1200px 400px at 50% -120px, rgba(37, 99, 235, 0.08), transparent 60%),
+      linear-gradient(to bottom, transparent, var(--bg));
+    border-bottom: 1px solid var(--line);
+  }
+  .hero {
+    text-align: center; max-width: 680px; margin: 0 auto;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+    color: var(--muted); text-transform: uppercase;
+    padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px;
+    background: var(--surface);
+    margin-bottom: 20px;
+  }
+  .eyebrow::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--success); box-shadow: 0 0 0 3px var(--success-soft);
+  }
+  h1 {
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+    margin: 0 0 16px;
+  }
+  h1 .accent { color: var(--accent); }
+  .sub {
+    color: var(--ink-2); font-size: 17px; line-height: 1.55;
+    margin: 0 auto 36px; max-width: 560px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px; max-width: 720px; margin: 0 auto;
+  }
+  @media (max-width: 640px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+  }
+  .stat .num {
+    font-size: 24px; font-weight: 700; letter-spacing: -0.02em;
+    color: var(--ink); line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat .label {
+    font-size: 12px; color: var(--muted); margin-top: 4px;
+    text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500;
+  }
+
+  /* --- Filters --- */
+  .filter-bar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(250, 250, 249, 0.85);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (prefers-color-scheme: dark) {
+    .filter-bar { background: rgba(12, 10, 9, 0.85); }
+  }
+  .filters {
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    padding: 14px 0;
+  }
+  .filter {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--ink-2); font-weight: 500;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    transition: border-color 120ms ease;
+  }
+  .filter:focus-within { border-color: var(--accent); }
+  .filter .k { color: var(--muted); font-weight: 400; }
+  .filter input[type="number"], .filter input[type="search"] {
+    font: inherit; background: transparent; border: 0; outline: 0; color: var(--ink);
+    padding: 0;
+  }
+  .filter input[type="number"] { width: 48px; text-align: right; }
+  .filter input[type="search"] { width: 160px; }
+  .filter.toggle { cursor: pointer; user-select: none; padding: 6px 12px; }
+  .filter.toggle input { position: absolute; opacity: 0; pointer-events: none; }
+  .filter.toggle:has(input:checked) {
+    background: var(--accent-soft); border-color: var(--accent); color: var(--accent);
+  }
+  .count {
+    margin-left: auto; color: var(--muted); font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+  .count b { color: var(--ink); font-weight: 600; }
+
+  /* --- Cards --- */
+  main { padding: 32px 0 48px; }
+  .grid { display: grid; gap: 12px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 18px;
+    align-items: start;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  }
+  .card:hover {
+    border-color: var(--line);
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+  }
+  .card.hidden { display: none; }
+
+  .avatar-wrap { position: relative; }
+  .avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--line-2);
+    display: block;
+    object-fit: cover;
+  }
+  .rank-badge {
+    position: absolute; bottom: -4px; right: -4px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 999px; padding: 2px 7px;
+    font-size: 10px; font-weight: 600; color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    min-width: 22px; text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .identity .name {
+    font-size: 16px; font-weight: 600; color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .identity .name a { color: inherit; }
+  .identity .meta {
+    font-size: 13px; color: var(--muted);
+    margin-top: 3px;
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+  }
+  .identity .meta a { color: var(--muted); }
+  .identity .meta a:hover { color: var(--accent); }
+  .identity .meta .sep { color: var(--faint); }
+  .identity .meta .employer::before { content: "·"; margin-right: 8px; color: var(--faint); }
+
+  .contribs {
+    display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 500;
+    padding: 4px 10px; border-radius: 999px;
+    background: var(--line-2); color: var(--ink-2);
+    font-variant-numeric: tabular-nums;
+  }
+  .chip b { color: var(--ink); font-weight: 600; }
+  .chip.core { background: var(--accent-soft); color: var(--accent); }
+  .chip.core b { color: var(--accent); }
+  .chip.gb {
+    background: color-mix(in srgb, var(--success) 12%, transparent);
+    color: var(--success);
+  }
+  .chip.gb b { color: var(--success); }
+
+  .recent {
+    margin-top: 12px; font-size: 12.5px; color: var(--muted);
+    border-top: 1px solid var(--line-2); padding-top: 10px;
+  }
+  .recent ul { list-style: none; padding: 0; margin: 0; }
+  .recent li {
+    padding: 2px 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  .recent .src {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--faint);
+    padding: 1px 6px; border-radius: 4px;
+    background: var(--line-2); margin-right: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  .recent a { color: var(--ink-2); }
+  .recent a:hover { color: var(--accent); }
+
+  .actions {
+    display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
+    min-width: 160px;
+  }
+  @media (max-width: 680px) {
+    .card { grid-template-columns: 48px 1fr; }
+    .avatar { width: 48px; height: 48px; }
+    .actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; min-width: 0; margin-top: 4px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12.5px; font-weight: 500;
+    padding: 6px 12px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface);
+    color: var(--ink-2); text-decoration: none;
+    transition: all 120ms ease;
+    white-space: nowrap;
+  }
+  .btn:hover {
+    text-decoration: none;
+    border-color: var(--ink-2);
+    color: var(--ink);
+    transform: translateY(-1px);
+  }
+  .btn .icon { width: 13px; height: 13px; flex-shrink: 0; }
+  .btn.github { background: #24292e; color: white; border-color: #24292e; }
+  .btn.github:hover { background: #32383f; border-color: #32383f; color: white; }
+  .btn.opencollective { background: #297eff; color: white; border-color: #297eff; }
+  .btn.opencollective:hover { background: #1a6fee; border-color: #1a6fee; color: white; }
+  .btn.kofi { background: #ff5e5b; color: white; border-color: #ff5e5b; }
+  .btn.kofi:hover { background: #f04a47; border-color: #f04a47; color: white; }
+  .btn.bmc { background: #ffdd00; color: #111; border-color: #ffdd00; }
+  .btn.bmc:hover { background: #f0d000; border-color: #f0d000; }
+  .btn.liberapay { background: #f6c915; color: #111; border-color: #f6c915; }
+  .btn.liberapay:hover { background: #e5b800; border-color: #e5b800; }
+  .btn.patreon { background: #ff424d; color: white; border-color: #ff424d; }
+  .btn.patreon:hover { background: #ee313c; border-color: #ee313c; color: white; }
+
+  .no-sponsor {
+    font-size: 12px; color: var(--faint); font-style: italic;
+    padding: 6px 10px; border: 1px dashed var(--line); border-radius: 999px;
+  }
+
+  .empty {
+    display: none; text-align: center; padding: 64px 24px;
+    color: var(--muted); font-size: 15px;
+  }
+  .empty.show { display: block; }
+
+  /* --- Footer --- */
+  footer {
+    border-top: 1px solid var(--line); padding: 48px 0 64px;
+    color: var(--muted); font-size: 13.5px; line-height: 1.6;
+  }
+  footer .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 640px) { footer .cols { grid-template-columns: 1fr; } }
+  footer h3 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--ink-2); margin: 0 0 8px; font-weight: 600;
+  }
+  footer p { margin: 6px 0; }
+  footer code {
+    background: var(--line-2); padding: 1px 6px; border-radius: 4px;
+    font-size: 12px; color: var(--ink-2);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="hero">
+      <span class="eyebrow">Generated {{ generated_at }}</span>
+      <h1>Support the <span class="accent">people</span><br>who ship WordPress</h1>
+      <p class="sub">
+        A directory of individual contributors to WordPress Core and Gutenberg,
+        ranked by contribution activity over the last {{ days }} days. Built to
+        recognize and enable direct support of the humans behind the project.
+      </p>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">{{ "{:,}".format(rows|length) }}</div>
+          <div class="label">contributors</div>
+        </div>
+        <div class="stat">
+          <div class="num">{{ "{:,}".format(core_total) }}</div>
+          <div class="label">core commits</div>
+        </div>
+        <div class="stat">
+          <div class="num">{{ "{:,}".format(gb_total) }}</div>
+          <div class="label">Gutenberg PRs</div>
+        </div>
+        <div class="stat">
+          <div class="num">{{ sponsored_count }}</div>
+          <div class="label">accept sponsorships</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <div class="container">
+    <div class="filters">
+      <label class="filter">
+        <span class="k">core ≥</span>
+        <input type="number" id="f-core" min="0" value="0">
+      </label>
+      <label class="filter">
+        <span class="k">Gutenberg ≥</span>
+        <input type="number" id="f-gb" min="0" value="0">
+      </label>
+      <label class="filter">
+        <span class="k">total ≥</span>
+        <input type="number" id="f-total" min="0" value="5">
+      </label>
+      <label class="filter toggle">
+        <input type="checkbox" id="f-sponsor"> sponsorable only
+      </label>
+      <label class="filter toggle">
+        <input type="checkbox" id="f-mapped"> mapped only
+      </label>
+      <label class="filter">
+        <span class="k">🔍</span>
+        <input type="search" id="f-search" placeholder="name or handle…">
+      </label>
+      <span class="count"><b id="count-shown">0</b> of <b id="count-total">0</b></span>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <div class="grid">
+      <div class="empty" id="empty">No contributors match these filters.</div>
+      {% for r in rows %}
+      <article class="card"
+        data-core="{{ r.core_props }}"
+        data-gb="{{ r.gutenberg_prs }}"
+        data-total="{{ r.score }}"
+        data-sponsor="{{ 1 if r.sponsor_links else 0 }}"
+        data-mapped="{{ 1 if r.handle in mapped_handles else 0 }}"
+        data-search="{{ (r.handle + ' ' + r.name + ' ' + (r.github or ''))|lower }}">
+        <div class="avatar-wrap">
+          {% if r.github %}
+            <img class="avatar" src="https://github.com/{{ r.github }}.png?size=112" alt="" loading="lazy">
+          {% elif r.wporg_profile %}
+            <img class="avatar" src="https://secure.gravatar.com/avatar/?s=112&d=mp" alt="" loading="lazy">
+          {% else %}
+            <div class="avatar"></div>
+          {% endif %}
+          <span class="rank-badge">#{{ loop.index }}</span>
+        </div>
+
+        <div class="identity">
+          <div class="name">
+            {% if r.wporg_profile %}<a href="{{ r.wporg_profile }}">{{ r.name }}</a>
+            {% elif r.github %}<a href="https://github.com/{{ r.github }}">{{ r.name }}</a>
+            {% else %}{{ r.name }}{% endif %}
+          </div>
+          <div class="meta">
+            {% if r.wporg_profile %}
+              <a href="{{ r.wporg_profile }}">@{{ r.handle }}</a>
+            {% endif %}
+            {% if r.github %}
+              {% if r.wporg_profile %}<span class="sep">·</span>{% endif %}
+              <a href="https://github.com/{{ r.github }}">github.com/{{ r.github }}</a>
+            {% endif %}
+            {% if r.website %}
+              <span class="sep">·</span><a href="{{ r.website }}">site</a>
+            {% endif %}
+            {% if r.employer %}
+              <span class="employer">at {{ r.employer }}</span>
+            {% endif %}
+          </div>
+
+          <div class="contribs">
+            {% if r.core_props %}
+            <span class="chip core"><b>{{ r.core_props }}</b> core props</span>
+            {% endif %}
+            {% if r.gutenberg_prs %}
+            <span class="chip gb"><b>{{ r.gutenberg_prs }}</b> Gutenberg PRs</span>
+            {% endif %}
+          </div>
+
+          {% if r.recent_core or r.recent_gb %}
+          <div class="recent">
+            <ul>
+              {% for c in r.recent_core %}
+              <li><span class="src">core</span><a href="https://github.com/WordPress/wordpress-develop/commit/{{ c.sha }}" title="{{ c.summary }}">{{ c.summary }}</a></li>
+              {% endfor %}
+              {% for p in r.recent_gb %}
+              <li><span class="src">gb</span><a href="{{ p.url }}" title="{{ p.title }}">{{ p.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="actions">
+          {% if r.sponsor_links %}
+            {% for s in r.sponsor_links %}
+            <a class="btn {{ s.platform }}" href="{{ s.url }}" rel="nofollow noopener">
+              {{ s.label }}
+            </a>
+            {% endfor %}
+          {% else %}
+            <span class="no-sponsor">no sponsor link on file</span>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="cols">
+      <div>
+        <h3>How this was built</h3>
+        <p>
+          Data joined from three public sources: WordPress Core commits on
+          <code>github.com/WordPress/wordpress-develop</code> (parsed for
+          <code>Props</code> attributions), merged PRs in
+          <code>github.com/WordPress/gutenberg</code>, and
+          <code>profiles.wordpress.org/{handle}</code> pages for GitHub/website
+          links. GitHub Sponsors listings are live-verified via the GraphQL API.
+        </p>
+        <p>
+          Contribution counts are a rough signal, not a complete picture. They miss
+          docs, design, translations, community support, plugin/theme repos, and
+          everything else that keeps the project running.
+        </p>
+      </div>
+      <div>
+        <h3>Contribute to this directory</h3>
+        <p>
+          Add or update sponsor links by editing
+          <code>data/contributors.yaml</code> and submitting a PR. No wp.org
+          cooperation is required for this site to exist. It runs entirely on
+          public data.
+        </p>
+        <p>
+          The goal of the project, raised on WordPress.org Slack, is to recognize
+          individual contributors rather than just the companies that sponsor
+          them.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const cards = Array.from(document.querySelectorAll('.card'));
+  document.getElementById('count-total').textContent = cards.length;
+  const empty = document.getElementById('empty');
+
+  const f = {
+    core: document.getElementById('f-core'),
+    gb: document.getElementById('f-gb'),
+    total: document.getElementById('f-total'),
+    sponsor: document.getElementById('f-sponsor'),
+    mapped: document.getElementById('f-mapped'),
+    search: document.getElementById('f-search'),
+  };
+
+  function apply() {
+    const minCore = +f.core.value || 0;
+    const minGb = +f.gb.value || 0;
+    const minTotal = +f.total.value || 0;
+    const sponsorOnly = f.sponsor.checked;
+    const mappedOnly = f.mapped.checked;
+    const q = f.search.value.trim().toLowerCase();
+
+    let shown = 0;
+    for (const c of cards) {
+      const visible =
+        +c.dataset.core >= minCore &&
+        +c.dataset.gb >= minGb &&
+        +c.dataset.total >= minTotal &&
+        (!sponsorOnly || c.dataset.sponsor === '1') &&
+        (!mappedOnly || c.dataset.mapped === '1') &&
+        (!q || c.dataset.search.includes(q));
+      c.classList.toggle('hidden', !visible);
+      if (visible) {
+        shown++;
+        const rk = c.querySelector('.rank-badge');
+        if (rk) rk.textContent = '#' + shown;
+      }
+    }
+    document.getElementById('count-shown').textContent = shown;
+    empty.classList.toggle('show', shown === 0);
+
+    const state = new URLSearchParams();
+    if (minCore) state.set('core', minCore);
+    if (minGb) state.set('gb', minGb);
+    if (minTotal !== 5) state.set('total', minTotal);
+    if (sponsorOnly) state.set('sponsor', '1');
+    if (mappedOnly) state.set('mapped', '1');
+    if (q) state.set('q', q);
+    const qs = state.toString();
+    history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+  }
+
+  const params = new URLSearchParams(location.search);
+  if (params.has('core')) f.core.value = params.get('core');
+  if (params.has('gb')) f.gb.value = params.get('gb');
+  if (params.has('total')) f.total.value = params.get('total');
+  if (params.get('sponsor') === '1') f.sponsor.checked = true;
+  if (params.get('mapped') === '1') f.mapped.checked = true;
+  if (params.has('q')) f.search.value = params.get('q');
+
+  for (const el of Object.values(f)) {
+    el.addEventListener('input', apply);
+    el.addEventListener('change', apply);
+  }
+  apply();
+})();
+</script>
+</body>
+</html>

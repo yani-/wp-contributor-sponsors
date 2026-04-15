@@ -1,0 +1,79 @@
+name: Add or update my entry
+description: Use this if you'd rather not edit YAML yourself. A maintainer will do it for you.
+title: "[entry] @your-wporg-handle"
+labels: ["entry"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing to WordPress! If you're comfortable editing YAML,
+        you can also submit a PR against `data/contributors.yaml` directly.
+        See [CONTRIBUTING.md](https://github.com/yani-/wp-contributor-sponsors/blob/main/CONTRIBUTING.md).
+
+        **Only fill fields you want displayed.** Every field is optional.
+  - type: input
+    id: wporg_handle
+    attributes:
+      label: Your wp.org handle
+      placeholder: e.g. westonruter
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Display name (optional)
+      placeholder: Leave blank to use what's on your wp.org profile
+  - type: input
+    id: github
+    attributes:
+      label: GitHub handle (optional)
+      description: Usually auto-detected from your wp.org profile. Fill this only if it's wrong.
+      placeholder: your-github-username
+  - type: input
+    id: github_sponsors
+    attributes:
+      label: GitHub Sponsors URL (if any)
+      description: Leave blank. We auto-verify this via the GitHub API.
+      placeholder: https://github.com/sponsors/your-username
+  - type: input
+    id: open_collective
+    attributes:
+      label: Open Collective slug
+      placeholder: your-slug (shows as opencollective.com/your-slug)
+  - type: input
+    id: ko_fi
+    attributes:
+      label: Ko-fi slug
+      placeholder: your-slug (shows as ko-fi.com/your-slug)
+  - type: input
+    id: buy_me_a_coffee
+    attributes:
+      label: Buy Me a Coffee slug
+      placeholder: your-slug
+  - type: input
+    id: liberapay
+    attributes:
+      label: Liberapay slug
+      placeholder: your-slug
+  - type: input
+    id: patreon
+    attributes:
+      label: Patreon slug
+      placeholder: your-slug
+  - type: input
+    id: website
+    attributes:
+      label: Website (optional override)
+      placeholder: https://example.com
+  - type: input
+    id: employer
+    attributes:
+      label: Employer (optional)
+      placeholder: Company Name
+  - type: checkboxes
+    id: own
+    attributes:
+      label: Confirmation
+      options:
+        - label: I am adding or updating my own entry, not someone else's.
+          required: true

@@ -1,0 +1,37 @@
+name: Data correction
+description: Report inaccurate or miscounted contributor data.
+title: "[data] "
+labels: ["data-correction"]
+body:
+  - type: input
+    id: handle
+    attributes:
+      label: Affected wp.org handle
+      placeholder: e.g. westonruter
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What's currently shown
+      placeholder: e.g. "GitHub linked to the wrong account" / "Props count seems way off"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should be
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source for the correct value
+      description: Public link that confirms the right answer (profile URL, commit URL, etc.)
+  - type: checkboxes
+    id: publicness
+    attributes:
+      label: Confirmation
+      options:
+        - label: This is publicly-available information (no private data shared on someone's behalf).
+          required: true
