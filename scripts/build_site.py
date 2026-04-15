@@ -109,6 +109,27 @@ def sponsor_links(info: dict, sponsors: dict) -> list[dict]:
     return links
 
 
+def merge_recent(core_items, gb_items, limit=3):
+    """Merge core commits and gutenberg PRs into a single list, most recent first."""
+    merged = []
+    for c in core_items:
+        merged.append({
+            "kind": "core",
+            "when": c.get("date") or "",
+            "title": c.get("summary", ""),
+            "url": f"https://github.com/WordPress/wordpress-develop/commit/{c.get('sha', '')}",
+        })
+    for p in gb_items:
+        merged.append({
+            "kind": "gb",
+            "when": p.get("merged_at") or "",
+            "title": p.get("title", ""),
+            "url": p.get("url", ""),
+        })
+    merged.sort(key=lambda x: x["when"], reverse=True)
+    return merged[:limit]
+
+
 def build_rows(core, gb, manual, profiles, sponsors):
     gb_by_github = {k.lower(): v for k, v in gb["pr_counts"].items()}
     gb_recent_by_github = {k.lower(): v for k, v in gb["recent_prs_by_user"].items()}
@@ -139,6 +160,11 @@ def build_rows(core, gb, manual, profiles, sponsors):
         if core_n == 0 and gb_n == 0:
             continue
         is_wporg_handle = h in core["props_counts"] or h in manual or h in profiles
+        recent = merge_recent(
+            core["recent_commits_by_handle"].get(h, []),
+            gb_recent_by_github.get(github, []),
+            limit=3,
+        )
         rows.append({
             "handle": h,
             "is_wporg_handle": is_wporg_handle,
@@ -152,8 +178,7 @@ def build_rows(core, gb, manual, profiles, sponsors):
             "gutenberg_prs": gb_n,
             "score": core_n + gb_n,
             "sponsor_links": sponsor_links(info, sponsors),
-            "recent_core": core["recent_commits_by_handle"].get(h, [])[:3],
-            "recent_gb": gb_recent_by_github.get(github, [])[:3],
+            "recent": recent,
             "wporg_profile": f"https://profiles.wordpress.org/{h}/" if is_wporg_handle else None,
         })
 

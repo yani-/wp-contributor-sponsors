@@ -829,15 +829,12 @@
             {% endif %}
           </div>
 
-          {% if r.recent_core or r.recent_gb %}
+          {% if r.recent %}
           <div class="recent">
             <h4 class="sr-only">Recent activity</h4>
             <ul>
-              {% for c in r.recent_core %}
-              <li><span class="src" aria-label="Source: Core">core</span><a href="https://github.com/WordPress/wordpress-develop/commit/{{ c.sha }}" title="{{ c.summary }}">{{ c.summary }}</a></li>
-              {% endfor %}
-              {% for p in r.recent_gb %}
-              <li><span class="src" aria-label="Source: Gutenberg">gb</span><a href="{{ p.url }}" title="{{ p.title }}">{{ p.title }}</a></li>
+              {% for item in r.recent %}
+              <li><span class="src" aria-label="Source: {{ 'Core' if item.kind == 'core' else 'Gutenberg' }}">{{ item.kind }}</span><a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a></li>
               {% endfor %}
             </ul>
           </div>
