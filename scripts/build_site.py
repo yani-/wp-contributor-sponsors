@@ -134,35 +134,51 @@ def build_rows(core, gb, manual, profiles, sponsors):
     gb_by_github = {k.lower(): v for k, v in gb["pr_counts"].items()}
     gb_recent_by_github = {k.lower(): v for k, v in gb["recent_prs_by_user"].items()}
 
-    # Union of handles: core props keys, manual entries, profile cache entries.
+    # Profile cache entries that 404'd or errored don't represent real wp.org
+    # handles; exclude them from the handle universe.
+    valid_profiles = {
+        h: info for h, info in profiles.items()
+        if not info.get("not_found") and not info.get("error") and not info.get("status")
+    }
+
+    # Union of handles: core props keys, manual entries, valid profile entries.
     handles = (
         set(core["props_counts"].keys())
         | set(manual.keys())
-        | set(profiles.keys())
+        | set(valid_profiles.keys())
     )
-    # Reverse-lookup: which github logins are already claimed by a wp.org handle
-    claimed_github: set[str] = set()
+    # Reverse-lookup: which github logins are claimed by which wp.org handle
+    github_claimed_by: dict[str, str] = {}
     for h in handles:
         info = resolve_info(h, manual, profiles)
         if info["github"]:
-            claimed_github.add(info["github"].lower())
+            github_claimed_by.setdefault(info["github"].lower(), h)
     # Add unclaimed Gutenberg-only contributors by github login
     for gh_login in gb_by_github:
-        if gh_login not in claimed_github:
+        if gh_login not in github_claimed_by:
             handles.add(gh_login)
 
     rows = []
     for h in handles:
         info = resolve_info(h, manual, profiles)
-        github = (info["github"] or h).lower()
+        # Decide which github login (if any) owns this row's Gutenberg count.
+        # If the handle has an explicit github, use it.
+        # Otherwise fall back to handle-as-github only when that github isn't
+        # already claimed by a different wp.org handle.
+        if info["github"]:
+            github = info["github"].lower()
+        elif github_claimed_by.get(h.lower(), h) == h:
+            github = h.lower()
+        else:
+            github = None
         core_n = core["props_counts"].get(h, 0)
-        gb_n = gb_by_github.get(github, 0)
+        gb_n = gb_by_github.get(github, 0) if github else 0
         if core_n == 0 and gb_n == 0:
             continue
-        is_wporg_handle = h in core["props_counts"] or h in manual or h in profiles
+        is_wporg_handle = h in core["props_counts"] or h in manual or h in valid_profiles
         recent = merge_recent(
             core["recent_commits_by_handle"].get(h, []),
-            gb_recent_by_github.get(github, []),
+            gb_recent_by_github.get(github, []) if github else [],
             limit=3,
         )
         rows.append({
@@ -183,7 +199,37 @@ def build_rows(core, gb, manual, profiles, sponsors):
         })
 
     rows.sort(key=lambda r: (-r["score"], -r["core_props"], r["handle"]))
-    return rows
+    return dedup_by_github(rows)
+
+
+def dedup_by_github(rows):
+    """Collapse rows that share a GitHub handle.
+
+    When a person has a wp.org profile that maps to a GitHub account AND
+    the scraper also discovered their raw GitHub login as a separate entry
+    (because it appeared in the Gutenberg PR list), both rows end up with
+    the same GB PR count. Keep the entry with the most core props, drop
+    the other. Core props are wp.org-handle-specific so they're the
+    canonical signal for the primary identity.
+    """
+    seen: dict[str, dict] = {}
+    deduped = []
+    for r in rows:
+        gh = (r.get("github") or "").lower()
+        if not gh:
+            deduped.append(r)
+            continue
+        primary = seen.get(gh)
+        if primary is None:
+            seen[gh] = r
+            deduped.append(r)
+        else:
+            # primary already in deduped; decide which to keep
+            if r["core_props"] > primary["core_props"]:
+                deduped[deduped.index(primary)] = r
+                seen[gh] = r
+            # else: drop the current row (skip appending)
+    return deduped
 
 
 def main():
