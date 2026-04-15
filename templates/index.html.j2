@@ -423,7 +423,14 @@
 
   /* Cards */
   main { padding: 32px 0 48px; }
-  .grid { display: grid; gap: 12px; }
+  .grid {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .grid > li { list-style: none; display: block; }
 
   .card {
     background: var(--surface);
